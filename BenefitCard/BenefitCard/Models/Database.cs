@@ -24,12 +24,14 @@ namespace BenefitCard.Models
         //TODO
         public void LoadDatabase()
         {
+            int counter = 1;
             //- konzultovat s dušanem
             Reader reader = new Reader();
             reader.Read();
 
             foreach (Facility f in reader.facilities)
             {
+                f.Id = counter++;
                 Facilities.Add(f);
 
                 foreach (string activity in f.Activities)
