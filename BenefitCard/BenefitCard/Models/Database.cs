@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using BenefitCard.Models.JsonReader;
-using Microsoft.EntityFrameworkCore.SqlServer;
 
 namespace BenefitCard.Models
 {
@@ -15,21 +14,22 @@ namespace BenefitCard.Models
 		public DbSet<Tuple<string, List<Facility>>> Activities { get; set; }
 
 
+        //TODO
         public Database()
         {
-                LoadDatabase();
+            LoadDatabase();
+
         }
 
+        //TODO
         public void LoadDatabase()
         {
-            int counter = 1;
             //- konzultovat s dušanem
             Reader reader = new Reader();
             reader.Read();
 
             foreach (Facility f in reader.facilities)
             {
-                f.Id = counter++;
                 Facilities.Add(f);
 
                 foreach (string activity in f.Activities)
