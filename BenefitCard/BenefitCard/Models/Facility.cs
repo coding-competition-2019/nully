@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BenefitCard.Models
 {
-	public class Facility //:IComparable<Facility>
+	public class Facility :IComparable<Facility>
 	{
 		public int Id { get; set; }
 		public string Name { get; set; }
@@ -17,30 +17,36 @@ namespace BenefitCard.Models
 		public int distance { get; set; }
 		//public Coordinates Coordinates { get; set; }
 
-        /*/public Facility(string name, Address addr,string url, List<string> activities)
+        /*public Facility(string name, Address addr,string url, List<string> activities)
         {
             this.Name = name;
             this.Address = addr;
             this.Activities = activities;
             this.Url = url;
-        }/**/
-		/*
+        }*/
+		
 		public int CompareTo(Facility other)
 		{
 			if(this.distance > other.distance)
 			{
-				return -1;
+				return 1;
 			}
 			if (this.distance == other.distance)
 			{
-				if (this.Name > other.Name)
+
+				return 0;
+
+				//pokus o sekundarni sort
+				/*
+				if (this.Name[0] > other.Name[0])
 				{
-					return 
+					return -1;
 				}
+				*/
 			}
-			return 0;
+			return -1;
 		}
-		*/
+		
         public Coordinates GetCoordinates()
         {
             Coordinates c = new Coordinates();

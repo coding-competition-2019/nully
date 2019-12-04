@@ -104,7 +104,6 @@ namespace BenefitCard.Controllers
 			}
 
 			facilities.Sort();
-
 		}
 
 		static int GetNumber(string s)
