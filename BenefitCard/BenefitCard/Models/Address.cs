@@ -5,10 +5,16 @@ using System.Threading.Tasks;
 
 namespace BenefitCard.Models
 {
-	public class Address
-	{
-		public string Street { get; set; }
-		public int ZipCode { get; set; }
-		public string City { get; set; }
-	}
+    public class Address
+    {
+        public string Street { get; set; }
+        public int ZipCode { get; set; }
+        public string City { get; set; }
+
+        /*public Address(string street)
+        {
+            this.Street = street;
+        }*/
+
+    }
 }

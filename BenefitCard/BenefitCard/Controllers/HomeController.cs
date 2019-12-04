@@ -13,6 +13,8 @@ namespace BenefitCard.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
+		Database database = new Database();
+
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
@@ -25,6 +27,7 @@ namespace BenefitCard.Controllers
 
 		public IActionResult ListActivities()
 		{
+			//database.Facilities.Add(new Facility());
 			List<string> activities = new List<string>();
 			activities.Add("Fotbal");
 			activities.Add("Tenis");
@@ -42,14 +45,24 @@ namespace BenefitCard.Controllers
 			
 			return View();
 		}
-
-		public IActionResult MainPage()
+        
+        public IActionResult MainPage()
         {
             return View();
         }
 
         public IActionResult Privacy()
         {
+            return View();
+        }
+
+        public IActionResult TableActivities()
+        {
+            //List<Facility> activities = new List<Facility>();
+            //Facility fac1 = new Facility("facility1",new Address("ulica1"));
+            //Facility fac2 = new Facility("facility2", new Address("ulica2"));
+            //activities.Add(fac1);
+            //activities.Add(fac2);
             return View();
         }
 
