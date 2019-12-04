@@ -37,7 +37,13 @@ namespace BenefitCard.Controllers
 			return View();
 		}
 
-        public IActionResult MainPage()
+		public IActionResult ShowDetail(Facility facility)
+		{
+			
+			return View();
+		}
+
+		public IActionResult MainPage()
         {
             return View();
         }
