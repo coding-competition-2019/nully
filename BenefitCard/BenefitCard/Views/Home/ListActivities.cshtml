@@ -6,11 +6,28 @@
 <h2>Choose activities</h2>
 <div class="container">
 
+    <script>
+        $('.vec :checkbox').parent().on('click', function (event) {
+            event.stopPropagation()
+        });
+    </script>
     <style>
         .dropdown-menu-form {
             padding: 5px 10px 0;
             max-height: 250px;
             overflow-y: scroll;
+        }
+
+        .drop_btn { /* This is for styling the dropdown button */
+            background-color: #7A8288;
+            color: white;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .vec :hover {
+            background-color: black;
         }
     </style>
 
@@ -25,13 +42,15 @@
                             Possible activities
                             <b class="caret"></b>
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-form" role="menu">
+                        <ul class="dropdown-menu dropdown-menu-form drop_btn" role="menu">
                             @foreach (var item in Model)
                             {
-                                <li>
-                                    <input type="checkbox" name="choosenActivities" id=@item value=@item />
-                                    @Html.DisplayFor(modelItem => item)
-                                </li>
+                                <div class="vec">
+                                    <li>
+                                        <input type="checkbox" name="choosenActivities" id=@item value=@item />
+                                        @Html.DisplayFor(modelItem => item)
+                                    </li>
+                                </div>
                             }
                         </ul>
                     </div>
@@ -45,19 +64,19 @@
             </tr>
         </table>
     }
-        <style>
-            .dropdown-menu-form {
-                padding: 5px 10px 0;
-                max-height: 300px;
-                overflow-y: scroll;
-            }
-        </style>
+    <style>
+        .dropdown-menu-form {
+            padding: 5px 10px 0;
+            max-height: 300px;
+            overflow-y: scroll;
+        }
+    </style>
 
 
 
 
 
-    </div>
+</div>
 
 
 
