@@ -25,14 +25,16 @@ namespace BenefitCard.Controllers
             return View();
         }
 
-		public IActionResult ListActivities(string chosenActivity, List<string> PickedActivities)
+		public IActionResult ListActivities(string chosenActivity)
 		{
-			if (!PickedActivities.Contains(chosenActivity))
+
+			var activities = new List<string>();
+			foreach (var item in database.Activities)
 			{
-				PickedActivities.Add(chosenActivity);
+				activities.Add(item.Key);
 			}
 
-			return View(PickedActivities);
+			return View(activities);
 		}
 
 		[HttpPost]
