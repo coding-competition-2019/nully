@@ -11,5 +11,11 @@ namespace BenefitCard.Models
 		public string Url { get; set; }
 		public Address Address { get; set; }
 		public List<string> Activities { get; set; }
+
+        /*public Facility(string name, Address addr)
+        {
+            this.Name = name;
+            this.Address = addr;
+        }*/
 	}
 }

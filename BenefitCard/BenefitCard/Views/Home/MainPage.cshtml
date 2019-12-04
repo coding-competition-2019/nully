@@ -10,5 +10,8 @@
         Would you like to search for an activity? 
     </p>
 </div>
-
-<input id="Search" type="submit" value="Search activity" class="btn btn-outline-success"/>
+<form asp-controller="Home" asp-action="ListActivities">
+	<p>
+	   <input id="Search" type="submit" value="Search activity" class="btn btn-outline-success" />
+	</p>
+</form>

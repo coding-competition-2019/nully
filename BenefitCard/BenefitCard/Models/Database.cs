@@ -10,5 +10,18 @@ namespace BenefitCard.Models
 	{
 		public DbSet<Facility> Facilities { get; set; }
 		public DbSet<Tuple<string, Facility>> Activities { get; set; }
+
+
+		//TODO
+		public Database()
+		{
+			LoadDatabase();
+		}
+
+		//TODO
+		public void LoadDatabase()
+		{
+			//- konzultovat s dušanem
+		}
 	}
 }
