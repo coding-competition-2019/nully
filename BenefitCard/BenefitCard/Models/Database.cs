@@ -8,10 +8,14 @@ using Microsoft.EntityFrameworkCore.SqlServer;
 
 namespace BenefitCard.Models
 {
-    public class Database : DbContext
+    public class Database
     {
-        public DbSet<Facility> Facilities { get; set; }
-        public DbSet<Tuple<string, List<Facility>>> Activities { get; set; }
+
+		public Dictionary<int, Facility> Facilities { get; set; }
+      //  public DbSet<Facility> Facilities { get; set; }
+
+		public Dictionary<string, List<Facility>> Activities { get; set; }
+       // public DbSet<Tuple<string, List<Facility>>> Activities { get; set; }
 
 
         public Database()
@@ -29,7 +33,7 @@ namespace BenefitCard.Models
             foreach (Facility f in reader.facilities)
             {
                 f.Id = counter++;
-                Facilities.Add(f);
+                Facilities.Add(f.Id, f);
 
                 foreach (string activity in f.Activities)
                 {
@@ -41,6 +45,20 @@ namespace BenefitCard.Models
         void AddActivity(string activity, Facility f)
         {
             bool found = false;
+
+			if (Activities.ContainsKey(activity))
+			{
+				Activities[activity].Add(f);
+			}
+			else
+			{
+				List<Facility> l = new List<Facility>();
+				l.Add(f);
+				Activities.Add(activity, l);
+			}
+
+			//_______________________OLD
+			/*
             foreach (Tuple<string, List<Facility>> t in Activities)
             {
                 if (t.Item1 == activity)
@@ -49,6 +67,7 @@ namespace BenefitCard.Models
                     t.Item2.Add(f);
                 }
             }
+			
 
             if (found == false)
             {
@@ -57,6 +76,7 @@ namespace BenefitCard.Models
 
                 Activities.Add(new Tuple<string, List<Facility>>(activity, l));
             }
+			*/
         }
     }
 }

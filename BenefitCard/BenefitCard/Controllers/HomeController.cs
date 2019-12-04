@@ -30,7 +30,7 @@ namespace BenefitCard.Controllers
 			List<string> activitiesToShow = new List<string>();
 			foreach (var activity in database.Activities)
 			{
-				activitiesToShow.Add(activity.Item1);
+				activitiesToShow.Add(activity.Key);
 			}
 
 			return View(activitiesToShow);
@@ -42,13 +42,12 @@ namespace BenefitCard.Controllers
 		{
 			//V tomhle jsou ty facility
 			List<Facility> facilities = new List<Facility>();
+
 			foreach (string activity in choosenActivities)
 			{
-				if (database != null)
+				if (database != null) //mělo by se vyřešit kdy je databaze null - dodělat pak
 				{
-					var TupleOfActivity = database.Activities.Find(activity);
-
-					foreach (var facility in TupleOfActivity.Item2)
+					foreach (var facility in database.Activities[activity])
 					{
 						facilities.Add(facility);
 					}
@@ -60,20 +59,19 @@ namespace BenefitCard.Controllers
 		[HttpPost]
 		public IActionResult ShowDetail(int id)
 		{
-			Facility foundFacility;
-			//FUJ
-			foreach(var facility in database.Facilities)
+
+			if (!database.Facilities.ContainsKey(id))
 			{
-				if (facility.Id == id)
-				{
-					foundFacility = facility;
-					break;
-				}
+				// return ERROR VIEW
+				return Error();
 			}
+			else
+			{
+				var facility = database.Facilities[id];
 
 
-
-			return View();
+				return View(facility);
+			}
 		}
         
         public IActionResult MainPage()
