@@ -7,8 +7,9 @@ namespace BenefitCard.Models
 {
 	public class Facility
 	{
-		public string Street { get; set; }
-		public int ZipCode { get; set; }
-		public string City { get; set; }
+		public string Name { get; set; }
+		public string Url { get; set; }
+		public Address Address { get; set; }
+		public List<string> Activities { get; set; }
 	}
 }
