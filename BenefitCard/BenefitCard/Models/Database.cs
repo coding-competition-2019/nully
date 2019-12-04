@@ -34,29 +34,16 @@ namespace BenefitCard.Models
 
                 foreach (string activity in f.Activities)
                 {
-                    AddActivity(activity, f);
+                    bool found = false;
+                    foreach (Tuple<string, List<Facility>> t in Activities)
+                    {
+                        if (t.Item1 == activity)
+                        {
+                            found = true;
+
+                        }
+                    }
                 }
-            }
-        }
-
-        void AddActivity(string activity, Facility f)
-        {
-            bool found = false;
-            foreach (Tuple<string, List<Facility>> t in Activities)
-            {
-                if (t.Item1 == activity)
-                {
-                    found = true;
-                    t.Item2.Add(f);
-                }
-            }
-
-            if (found == false)
-            {
-                List<Facility> l = new List<Facility>();
-                l.Add(f);
-
-                Activities.Add(new Tuple<string, List<Facility>>(activity, l));
             }
         }
     }

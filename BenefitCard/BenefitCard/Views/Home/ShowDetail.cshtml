@@ -3,5 +3,40 @@
     ViewData["Title"] = "ShowDetail";
 }
 
-<h1>ShowDetail</h1>
+<h1> @Html.DisplayFor(name => Model.Name)</h1>
 
+<p>
+    <h2>Location</h2>
+    Street:  @Html.DisplayFor(name => Model.Address.Street)<br>
+    City: @Html.DisplayFor(name => Model.Address.City)<br>
+    Zip Code: @Html.DisplayFor(name => Model.Address.ZipCode)<br>
+</p>
+
+<table align="left">
+    <tr colespan="3">
+        <td>
+            What can you do there?
+        </td>
+    </tr>
+    <tr >
+        <td>
+            <ul >
+                @foreach (var item in Model.Activities)
+                {
+                    <li>@Html.DisplayFor(activity => item)</li>
+                }
+            </ul>
+        </td>
+    </tr>
+    <tr colespan="3">
+        <td align="left">
+            For more information please follow link below
+        </td>
+    </tr>
+    <tr colespan="3">
+        <td align="center">            
+            <a id="HyperLink1" href="@Html.DisplayFor(activity => Model.Url)">Facility homepage</a>
+        </td>
+
+    </tr>
+</table>

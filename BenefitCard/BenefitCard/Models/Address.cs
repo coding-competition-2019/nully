@@ -11,10 +11,11 @@ namespace BenefitCard.Models
         public int ZipCode { get; set; }
         public string City { get; set; }
 
-        /*public Address(string street)
+        /*/public Address(string street,string city)
         {
             this.Street = street;
-        }*/
+            this.City = city;
+        }/**/
 
     }
 }
