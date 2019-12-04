@@ -4,88 +4,46 @@
 }
 
 <h2>Choose activities</h2>
-
-<table>
-    <tr>
-        <td>
-            <input id="Activity" type="text" />
-        </td>
-        <td>
-            <input id="AddActivity" type="submit" class="btn btn-outline-success" value="Add activity into list" />
-        </td>
-    </tr>
-</table>
-
-So far you have selected:
-<br>
-<textarea readonly id="TextArea1" rows="5" cols="40"></textarea>
-
-
-<style>
-    .dropbtn {
-        background-color: #4CAF50;
-        color: white;
-        padding: 16px;
-        font-size: 16px;
-        border: none;
-    }
-
-    .dropdown {
-        position: relative;
-        display: inline-block;
-    }
-
-    .dropdown-content {
-        display: none;
-        position: absolute;
-        background-color: #f1f1f1;
-        min-width: 160px;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        z-index: 1;
-    }
-
-        .dropdown-content a {
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-        }
-
-            .dropdown-content a:hover {
-                background-color: #ddd;
-            }
-
-    .dropdown:hover .dropdown-content {
-        display: block;
-    }
-
-    .dropdown:hover .dropbtn {
-        background-color: #3e8e41;
-    }
-</style> 
-
 <div class="container">
-    <div class="row">
-        <div class="col-lg-12">
-            <h2 class="bold">Dont't know what to choose?</h2>
-            <h4>Click on the dropdown menu for options</h4>
-            <div class="btn-group">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Activity options<span class="caret"></span></button>
-                <ul class="dropdown-menu scrollable-menu" role="menu">
-                    @foreach (var item in Model)
-                    {
-                        <li>
-                            <a href="#">
-                                @Html.DisplayFor(modelItem => item)
-                            </a>
-                        </li>
-                    }
-                </ul>
-            </div>                
-        </div>
+
+    <style>
+        .dropdown-menu-form {
+            padding: 5px 10px 0;
+            max-height: 100px;
+            overflow-y: scroll;
+        }
+    </style>
+
+
+    <div class="dropdown">
+        <a class="dropdown-toggle btn" data-toggle="dropdown" href="#">
+            Toggle dropdown
+            <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-form" role="menu">
+            @foreach (var item in Model)
+            {
+                <li>
+                    <label class="checkbox">
+                        <input type="checkbox">
+                        @Html.DisplayFor(modelItem => item)
+                    </label>
+                </li>
+            }
+        </ul>
     </div>
+
+    <table>
+        <tr>
+            <td>
+                <input id="SubmitActivity" type="submit" class="btn btn-outline-success" value="Submit all chosen activities" />
+            </td>
+        </tr>
+    </table>
+
+
 </div>
 
 
-   
+
 
