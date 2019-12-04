@@ -53,11 +53,10 @@ namespace BenefitCard.Controllers
 					}
 				}
 			}
-			return View("TableActivities",facilities);
+			return View("TableActivities", facilities);
 		}		
         
-		[HttpPost]
-		public IActionResult ShowDetail(int id)
+		public IActionResult ShowDetail(int id = 0)
 		{
 
 			if (!database.Facilities.ContainsKey(id))
@@ -68,8 +67,6 @@ namespace BenefitCard.Controllers
 			else
 			{
 				var facility = database.Facilities[id];
-
-
 				return View(facility);
 			}
 		}
