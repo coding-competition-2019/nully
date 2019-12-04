@@ -55,8 +55,8 @@ namespace BenefitCard.Controllers
 				}
 			}
 			return View("TableActivities",facilities);
-		}
-
+		}		
+        
 		[HttpPost]
 		public IActionResult ShowDetail(int id)
 		{

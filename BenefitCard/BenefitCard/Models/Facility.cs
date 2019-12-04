@@ -14,10 +14,12 @@ namespace BenefitCard.Models
 		public List<string> Activities { get; set; }
 		public Coordinates Coordinates { get; set; }
 
-        /*public Facility(string name, Address addr)
+        /*/public Facility(string name, Address addr,string url, List<string> activities)
         {
             this.Name = name;
             this.Address = addr;
-        }*/
+            this.Activities = activities;
+            this.Url = url;
+        }/**/
 	}
 }
