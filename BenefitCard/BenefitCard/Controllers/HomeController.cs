@@ -59,7 +59,6 @@ namespace BenefitCard.Controllers
 		[HttpPost]
 		public IActionResult ShowDetail(Facility facility)
 		{
-
 			return View();
 		}
         
