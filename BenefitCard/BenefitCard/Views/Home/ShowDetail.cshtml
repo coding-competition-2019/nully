@@ -1,41 +1,101 @@
 ﻿@model Facility
+
 @{
-    ViewData["Title"] = "ShowDetail";
+	ViewData["Title"] = "ShowDetail";
 }
 
 <h1> @Html.DisplayFor(name => Model.Name)</h1>
 
-<p>
-    <h2>Location</h2>
-    Street:  @Html.DisplayFor(name => Model.Address.Street)<br>
-    City: @Html.DisplayFor(name => Model.Address.City)<br>
-    Zip Code: @Html.DisplayFor(name => Model.Address.ZipCode)<br>
-</p>
-
-<table align="left">
-    <tr colespan="3">
-        <td>
-            What can you do there?
-        </td>
-    </tr>
-    <tr >
-        <td>
-            <ul >
-                @foreach (var item in Model.Activities)
-                {
-                    <li>@Html.DisplayFor(activity => item)</li>
-                }
-            </ul>
-        </td>
-    </tr>
-    <tr colespan="3">
-        <td align="left">
-            For more information please follow link below
-        </td>
-    </tr>
-    <tr colespan="3">
-        <td align="center">            
-            <a id="HyperLink1" href="@Html.DisplayFor(activity => Model.Url)">Facility homepage</a>
-        </td>
-    </tr>
+<h2>Location</h2>
+<table>
+	<tr>
+		<td>
+			What can you do there?
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Street:
+		</td>
+		<td>
+			@Html.DisplayFor(name => Model.Address.Street)
+		</td>
+	<tr>
+		<td>
+			City:
+		</td>
+		<td>
+			@Html.DisplayFor(name => Model.Address.City)
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Zip Code:
+		</td>
+		<td>
+			@Html.DisplayFor(name => Model.Address.ZipCode)
+		</td>
+	</tr>
 </table>
+
+<br />
+
+<table class="table-dark">
+	<tr>
+		<td>
+			What can you do there?
+		</td>
+	</tr>
+	<tr>
+		<td class="bg-dark">
+			@foreach (var item in Model.Activities)
+			{
+				@Html.DisplayFor(activity => item)
+			}
+		</td>
+	</tr>
+	<tr>
+		<td align="left">
+			For more information please follow link
+		</td>
+		<td align="left">
+			<a id="HyperLink1" href="@Html.DisplayFor(activity => Model.Url)">Facility homepage</a>
+		</td>
+	</tr>
+</table>
+
+<br />
+
+<h3>Map</h3>
+<br />
+
+<script>
+	function myMap() {
+		var myCenter = new google.maps.LatLng(85.824500, 85.824500);
+		var mapProp = { center: myCenter, zoom: 12, scrollwheel: false, draggable: true, mapTypeId: google.maps.MapTypeId.ROADMAP };
+		var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+		var marker = new google.maps.Marker({ position: myCenter });
+		marker.setMap(map);
+	}
+</script>
+
+<fieldset>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<div id="googleMap" style="height:400px;width:100%;"></div>
+	<script>
+
+		function myMap() {
+			var myCenter = new google.maps.LatLng(20.296100, 85.824500);
+			var mapProp = { center: myCenter, zoom: 12, scrollwheel: false, draggable: true, mapTypeId: google.maps.MapTypeId.ROADMAP };
+			var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+			var marker = new google.maps.Marker({ position: myCenter });
+			marker.setMap(map);
+		}
+	</script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHQFxLKLWMvOQR5cCjKxkWED2YH98V2G8&callback=myMap"></script>
+</fieldset>

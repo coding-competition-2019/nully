@@ -25,6 +25,10 @@ namespace BenefitCard.Models
 
         public void LoadDatabase()
         {
+			Facilities = new Dictionary<int, Facility>();
+			Activities = new Dictionary<string, List<Facility>>();
+
+
             int counter = 1;
             //- konzultovat s dušanem
             Reader reader = new Reader();
@@ -44,7 +48,6 @@ namespace BenefitCard.Models
 
         void AddActivity(string activity, Facility f)
         {
-            bool found = false;
 
 			if (Activities.ContainsKey(activity))
 			{
