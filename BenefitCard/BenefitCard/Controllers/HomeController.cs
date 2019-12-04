@@ -25,7 +25,7 @@ namespace BenefitCard.Controllers
             return View();
         }
 
-		public IActionResult ListActivities(string chosenActivity)
+		public IActionResult ListActivities(int lat, int lat2)
 		{
 
 			var activities = new List<string>();
@@ -40,7 +40,7 @@ namespace BenefitCard.Controllers
 		[HttpPost]
 		public IActionResult ListPlaces(string[] choosenActivities)
 		{
-			if (choosenActivities != null || choosenActivities.Length == 0)
+			if (choosenActivities == null || choosenActivities.Length == 0)
 				return ErrorChooseEmpty();
 
 			//V tomhle jsou ty facility
