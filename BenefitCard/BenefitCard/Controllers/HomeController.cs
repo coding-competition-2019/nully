@@ -27,16 +27,34 @@ namespace BenefitCard.Controllers
 
 		public IActionResult ListActivities()
 		{
-			//database.Facilities.Add(new Facility());
-			List<string> activities = new List<string>();
-			activities.Add("Fotbal");
-			activities.Add("Tenis");
-			return View(activities);
+			List<string> activitiesToShow = new List<string>();
+
+			foreach ( var activity in database.Activities)
+			{
+				activitiesToShow.Add(activity.Item1);
+			}
+
+
+			return View(activitiesToShow);
+
 		}
 
 		[HttpPost]
 		public IActionResult ListPlaces(string[] choosenActivities)
 		{
+			//V tomhle jsou ty facility
+			List<Facility> facilities = new List<Facility>();
+			foreach (string activity in choosenActivities)
+			{
+				var TupleOfActivity = database.Activities.Find(activity);
+
+				foreach(var facility in TupleOfActivity.Item2)
+				{
+					facilities.Add(facility);
+				}
+			}
+
+
 			return View();
 		}
 
@@ -71,5 +89,11 @@ namespace BenefitCard.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-    }
+
+
+		public IActionResult ShowMap()
+		{
+			return View();
+		}
+	}
 }
