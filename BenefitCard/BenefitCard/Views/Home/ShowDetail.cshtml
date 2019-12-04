@@ -41,27 +41,31 @@
 <br />
 
 <table class="table-dark">
-	<tr>
-		<td>
-			What can you do there?
-		</td>
-	</tr>
-	<tr>
-		<td>
-			@foreach (var item in Model.Activities)
-			{
-				@Html.DisplayFor(activity => item)
-			}
-		</td>
-	</tr>
-	<tr>
-		<td align="left">
-			For more information please follow link
-		</td>
-		<td align="left">
-			<a id="HyperLink1" href="@Html.DisplayFor(activity => Model.Url)">Facility homepage</a>
-		</td>
-	</tr>
+    <tr>
+        <td style="text-decoration: underline">
+            What can you do there?
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @foreach (var item in Model.Activities)
+            {
+                if (item == Model.Activities.Last())
+                {
+                    <span>@Html.DisplayFor(activity => item) </span>
+                }
+                else
+                {
+                    <span>@Html.DisplayFor(activity => item), </span>
+                }
+            }
+        </td>
+    </tr>
+    <tr>
+        <td align="left">
+            For more information please follow <a id="HyperLink1" href="@Html.DisplayFor(activity => Model.Url)">this link</a>
+        </td>
+    </tr>
 </table>
 
 <br />
