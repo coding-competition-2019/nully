@@ -9,7 +9,7 @@ namespace BenefitCard.Models.JsonReader
 {
     class Reader
     {
-        List<Facility> fs = new List<Facility>();
+        public List<Facility> facilities = new List<Facility>();
         public void Read()
         {
                using (TextReader tr = new StreamReader(Environment.CurrentDirectory + @"\Data\places.json"))
@@ -26,7 +26,7 @@ namespace BenefitCard.Models.JsonReader
                             reader.Read(); // startobject
                             while (reader.TokenType == JsonToken.StartObject)
                             {
-                                fs.Add(ReadFacility(reader));
+                                facilities.Add(ReadFacility(reader));
                                 reader.Read();
                             }
                         }
