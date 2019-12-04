@@ -35,7 +35,7 @@ namespace BenefitCard.Controllers
 		}
 
 		[HttpPost]
-		public IActionResult ListPlaces(string[] choosenPlaces)
+		public IActionResult ListPlaces(string[] choosenActivities)
 		{
 			return View();
 		}
