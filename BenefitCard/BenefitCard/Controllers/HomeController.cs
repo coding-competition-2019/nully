@@ -27,16 +27,30 @@ namespace BenefitCard.Controllers
 
 		public IActionResult ListActivities()
 		{
-			//database.Facilities.Add(new Facility());
+			//foreach 
 			List<string> activities = new List<string>();
 			activities.Add("Fotbal");
 			activities.Add("Tenis");
 			return View(activities);
+
 		}
 
 		[HttpPost]
 		public IActionResult ListPlaces(string[] choosenActivities)
 		{
+			//V tomhle jsou ty facility
+			List<Facility> facilities = new List<Facility>();
+			foreach (string activity in choosenActivities)
+			{
+				var TupleOfActivity = database.Activities.Find(activity);
+
+				foreach(var facility in TupleOfActivity.Item2)
+				{
+					facilities.Add(facility);
+				}
+			}
+
+
 			return View();
 		}
 
