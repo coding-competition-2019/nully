@@ -6,44 +6,58 @@
 <h2>Choose activities</h2>
 <div class="container">
 
-	<style>
-		.dropdown-menu-form {
-			padding: 5px 10px 0;
-			max-height: 100px;
-			overflow-y: scroll;
-		}
-	</style>
+    <style>
+        .dropdown-menu-form {
+            padding: 5px 10px 0;
+            max-height: 250px;
+            overflow-y: scroll;
+        }
+    </style>
 
-	@using (Html.BeginForm(new { action = "ListPlaces" }))
-	{
-		<div class="dropdown">
-			<a class="dropdown-toggle btn" data-toggle="dropdown" href="#">
-				Toggle dropdown
-				<b class="caret"></b>
-			</a>
-			<ul class="dropdown-menu dropdown-menu-form" role="menu">
+    @using (Html.BeginForm(new { action = "ListPlaces" }))
+    {
+        <table>
+            <col width="70%">
+            <tr>
+                <td>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle btn" data-toggle="dropdown" href="#">
+                            Possible activities
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-form" role="menu">
+                            @foreach (var item in Model)
+                            {
+                                <li>
+                                    <input type="checkbox" name="choosenActivities" id=@item value=@item />
+                                    @Html.DisplayFor(modelItem => item)
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </td>
 
-				@foreach (var item in Model)
-				{
-					<li>
-						<input type="checkbox" name="choosenActivities" id=@item value=@item />
-						@Html.DisplayFor(modelItem => item)
-					</li>
 
-				}
-			</ul>
-		</div>
+                <td>
+                    <input align="bottom" id="SubmitActivity" type="submit" class="btn btn-outline-success" value="Submit all" />
+                </td>
 
-		<table>
-			<tr>
-				<td>
-					<input id="SubmitActivity" type="submit" class="btn btn-outline-success" value="Submit all chosen activities" />
-				</td>
-			</tr>
-		</table>
-	}
+            </tr>
+        </table>
+    }
+        <style>
+            .dropdown-menu-form {
+                padding: 5px 10px 0;
+                max-height: 100px;
+                overflow-y: scroll;
+            }
+        </style>
 
-</div>
+
+
+
+
+    </div>
 
 
 
