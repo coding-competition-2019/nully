@@ -37,6 +37,13 @@ namespace BenefitCard.Controllers
 		}
 
 		public IActionResult Privacy()
+        {}
+        public IActionResult MainPage()
+        {
+            return View();
+        }
+
+        public IActionResult Privacy()
         {
             return View();
         }
