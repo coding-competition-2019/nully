@@ -14,7 +14,7 @@ namespace BenefitCard.Models
 		public string Url { get; set; }
 		public Address Address { get; set; }
 		public List<string> Activities { get; set; }
-		public Coordinates Coordinates { get; set; }
+		//public Coordinates Coordinates { get; set; }
 
         /*/public Facility(string name, Address addr,string url, List<string> activities)
         {
@@ -24,77 +24,79 @@ namespace BenefitCard.Models
             this.Url = url;
         }/**/
 
-
-        public Coordinates GetCoordinates(Facility f)
+		
+        public Coordinates GetCoordinates()
         {
             Coordinates c = new Coordinates();
 
             var client = new WebClient();
-            using (var stream = client.OpenRead(GetLocationAPI(f.Address)))
+            using (var stream = client.OpenRead(GetLocationAPI(this.Address)))
             {
                 using (var reader = new StreamReader(stream))
                 {
                     string line;
                     while ((line = reader.ReadLine()) != null)
                     {
-                        if (line.Contains("lat"))
+                        if (line.Contains("northeast"))
                         {
+                            line = reader.ReadLine();
                             c.Latitude = GetNumber(line);
-                        }
-                        else if (line.Contains("lng"))
-                        {
+
+                            line = reader.ReadLine();
                             c.Longtitude = GetNumber(line);
 
+                            return c;
                         }
+
                     }
                     return c;
                 }
             }
         }
 
+		
+		static string GetLocationAPI(Address ad)
+		{
+			string url = @"https://maps.googleapis.com/maps/api/geocode/json?address=";
+			url += ad.Street.Replace(' ', '+');
+			url += ",";
+			url += ad.City.Replace(' ', '+');
+			url += @"&key=AIzaSyCHQFxLKLWMvOQR5cCjKxkWED2YH98V2G8";
+			return url;
+		}
 
-        static string GetLocationAPI(Address ad)
-        {
-            string url = @"https://maps.googleapis.com/maps/api/geocode/json?address=";
-            url += ad.Street.Replace(' ', '+');
-            url += ",";
-            url += ad.City.Replace(' ', '+');
-            url += @"&key=AIzaSyCHQFxLKLWMvOQR5cCjKxkWED2YH98V2G8";
-            return url;
-        }
+		static decimal GetNumber(string s)
+		{
+			decimal num = 0;
+			long counter = 0;
+			for (int i = 0; i < s.Length; i++)
+			{
+				if (s[i] >= 48 && s[i] <= 57)
+				{
+					while (s[i] >= 48 && s[i] <= 57)
+					{
+						num += s[i] - 48;
+						num *= 10;
+						i++;
+					}
 
-        static decimal GetNumber(string s)
-        {
-            decimal num = 0;
-            long counter = 0;
-            for (int i = 0; i < s.Length; i++)
-            {
-                if (s[i] >= 48 && s[i] <= 57)
-                {
-                    while (s[i] >= 48 && s[i] <= 57)
-                    {
-                        num += s[i] - 48;
-                        num *= 10;
-                        i++;
-                    }
+					while (++i < s.Length && s[i] >= 48 && s[i] <= 57)
+					{
+						num += s[i] - 48;
+						num *= 10;
 
-                    while (++i < s.Length && s[i] >= 48 && s[i] <= 57)
-                    {
-                        num += s[i] - 48;
-                        num *= 10;
+						counter++;
+					}
 
-                        counter++;
-                    }
+					for (int j = -1; j < counter; j++)
+					{
+						num /= 10;
+					}
+				}
+			}
 
-                    for (int j = -1; j < counter; j++)
-                    {
-                        num /= 10;
-                    }
-                }
-            }
-
-            return num;
-        }
-
-    }
+			return num;
+		}
+		
+	}
 }
