@@ -37,15 +37,17 @@ namespace BenefitCard.Models
                     string line;
                     while ((line = reader.ReadLine()) != null)
                     {
-                        if (line.Contains("lat"))
+                        if (line.Contains("northeast"))
                         {
+                            line = reader.ReadLine();
                             c.Latitude = GetNumber(line);
-                        }
-                        else if (line.Contains("lng"))
-                        {
+
+                            line = reader.ReadLine();
                             c.Longtitude = GetNumber(line);
 
+                            return c;
                         }
+
                     }
                     return c;
                 }

@@ -25,16 +25,14 @@ namespace BenefitCard.Controllers
             return View();
         }
 
-		public IActionResult ListActivities()
+		public IActionResult ListActivities(string chosenActivity, List<string> PickedActivities)
 		{
-			List<string> activitiesToShow = new List<string>();
-			foreach (var activity in database.Activities)
+			if (!PickedActivities.Contains(chosenActivity))
 			{
-				activitiesToShow.Add(activity.Key);
+				PickedActivities.Add(chosenActivity);
 			}
 
-			return View(activitiesToShow);
-
+			return View(PickedActivities);
 		}
 
 		[HttpPost]
@@ -43,18 +41,51 @@ namespace BenefitCard.Controllers
 			//V tomhle jsou ty facility
 			List<Facility> facilities = new List<Facility>();
 
-			foreach (string activity in choosenActivities)
+			foreach (string UserActivity in choosenActivities)
 			{
 				if (database != null) //mělo by se vyřešit kdy je databaze null - dodělat pak
 				{
-					foreach (var facility in database.Activities[activity])
+
+					foreach(var activity in database.Activities.Keys)
 					{
-						facilities.Add(facility);
+						//chceks for activities that suits user defined activity
+						if (CheckSubstring(UserActivity, activity))
+						{
+							//adds all the facilities providing chosen activity
+							foreach (var facility in database.Activities[activity])
+							{
+								facilities.Add(facility);
+							}
+						}
 					}
+
 				}
 			}
 			return View("TableActivities", facilities);
 		}		
+
+
+		/// <summary>
+		/// HelperFunction - finding substrings
+		/// </summary>
+		private bool CheckSubstring(string subString, string mainString)
+		{
+			int M = subString.Length;
+			int N = mainString.Length;
+
+			for (int i = 0; i <= N - M; i++)
+			{
+				int j;
+
+				for (j = 0; j < M; j++)
+					if (mainString[i + j] != subString[j])
+						break;
+
+				if (j == M)
+					return true;
+			}
+			return false;
+		}
         
 		public IActionResult ShowDetail(int id = 0)
 		{
