@@ -60,6 +60,19 @@ namespace BenefitCard.Controllers
 		[HttpPost]
 		public IActionResult ShowDetail(int id)
 		{
+			Facility foundFacility;
+			//FUJ
+			foreach(var facility in database.Facilities)
+			{
+				if (facility.Id == id)
+				{
+					foundFacility = facility;
+					break;
+				}
+			}
+
+
+
 			return View();
 		}
         
