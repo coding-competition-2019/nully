@@ -13,6 +13,8 @@ namespace BenefitCard.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
+		Database database = new Database();
+
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
@@ -25,6 +27,7 @@ namespace BenefitCard.Controllers
 
 		public IActionResult ListActivities()
 		{
+			//database.Facilities.Add(new Facility());
 			List<string> activities = new List<string>();
 			activities.Add("Fotbal");
 			activities.Add("Tenis");
