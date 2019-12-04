@@ -145,8 +145,9 @@ namespace BenefitCard.Controllers
 			url += userCOor.Latitude;
 			url += ',';
 			url += userCOor.Longtitude;
-			url += '|';
-			var facCOor = facility.GetCoordinates();
+			url += "&destinations=";
+
+            var facCOor = facility.GetCoordinates();
 			url += facCOor.Latitude;
 			url += ',';
 			url += facCOor.Longtitude;
@@ -190,7 +191,7 @@ namespace BenefitCard.Controllers
 			{
 				var facility = database.Facilities[id];
 
-				var userCoor = new Coordinates() { Latitude = 0, Longtitude = 0 };
+				var userCoor = new Coordinates() { Latitude = 41.43206M, Longtitude = 41.43206M };
 
 				var client = new WebClient();
 				using (var stream = client.OpenRead(GetDistancesApi(facility, userCoor)))
