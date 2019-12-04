@@ -101,11 +101,6 @@ namespace BenefitCard.Controllers
 				return View(facility);
 			}
 		}
-        
-        public IActionResult MainPage()
-        {
-            return View();
-        }
 
         public IActionResult Privacy()
         {
