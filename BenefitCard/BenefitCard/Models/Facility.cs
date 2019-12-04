@@ -28,8 +28,6 @@ namespace BenefitCard.Models
         public Coordinates GetCoordinates(Facility f)
         {
             Coordinates c = new Coordinates();
-            decimal lat;
-            decimal lng;
 
             var client = new WebClient();
             using (var stream = client.OpenRead(GetLocationAPI(f.Address)))

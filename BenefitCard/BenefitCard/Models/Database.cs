@@ -48,7 +48,6 @@ namespace BenefitCard.Models
 
         void AddActivity(string activity, Facility f)
         {
-            bool found = false;
 
 			if (Activities.ContainsKey(activity))
 			{
