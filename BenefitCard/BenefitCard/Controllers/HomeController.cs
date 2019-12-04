@@ -23,7 +23,20 @@ namespace BenefitCard.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+		public IActionResult ListActivities()
+		{
+			List<string> activities = new List<string>();
+			activities.Add("Fotbal");
+			activities.Add("Tenis");
+			return View(activities);
+		}
+
+		public IActionResult ListPlaces()
+		{
+			return View();
+		}
+
+		public IActionResult Privacy()
         {
             return View();
         }

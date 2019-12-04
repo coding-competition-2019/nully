@@ -1,0 +1,22 @@
+﻿@model List<string>
+@{
+	ViewData["Title"] = "ListActivities";
+}
+
+<h2>Choose activities</h2>
+<form>
+	<table>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					<input id=@item type="checkbox" />
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item)
+				</td>
+			</tr>
+		}
+	</table>
+	<input id="Submit1" type="submit" value="Search" />
+</form>
