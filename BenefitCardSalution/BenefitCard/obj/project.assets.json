@@ -8,27 +8,24 @@
     ".NETCoreApp,Version=v3.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Tomas Husak\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
+    "C:\\Users\\jimik\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Tomas Husak\\source\\repos\\BenefitCardSalution\\BenefitCard\\BenefitCard.csproj",
+      "projectUniqueName": "D:\\Games_n_Coding\\MCKENSI\\BenefitCardSalution\\BenefitCard\\BenefitCard.csproj",
       "projectName": "BenefitCard",
-      "projectPath": "C:\\Users\\Tomas Husak\\source\\repos\\BenefitCardSalution\\BenefitCard\\BenefitCard.csproj",
-      "packagesPath": "C:\\Users\\Tomas Husak\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Tomas Husak\\source\\repos\\BenefitCardSalution\\BenefitCard\\obj\\",
+      "projectPath": "D:\\Games_n_Coding\\MCKENSI\\BenefitCardSalution\\BenefitCard\\BenefitCard.csproj",
+      "packagesPath": "C:\\Users\\jimik\\.nuget\\packages\\",
+      "outputPath": "D:\\Games_n_Coding\\MCKENSI\\BenefitCardSalution\\BenefitCard\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Tomas Husak\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Users\\jimik\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.0"
