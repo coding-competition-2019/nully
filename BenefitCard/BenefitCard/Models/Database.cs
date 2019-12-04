@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using BenefitCard.Models.JsonReader;
+using Microsoft.EntityFrameworkCore.SqlServer;
 
 namespace BenefitCard.Models
 {
@@ -16,8 +17,7 @@ namespace BenefitCard.Models
 
         public Database()
         {
-            LoadDatabase();
-
+                LoadDatabase();
         }
 
         public void LoadDatabase()

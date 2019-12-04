@@ -54,26 +54,13 @@ namespace BenefitCard.Controllers
 				}
 			}
 			return View("TableActivities",facilities);
-		}
-
-<<<<<<< HEAD
-		public IActionResult ShowDetail(Facility facility) //
-        {
-            /*/List<string> acti = new List<string>();
-            acti.Add("Tennis");
-            acti.Add("Football");
-            acti.Add("Squash");
-            acti.Add("Swimming");
-
-            Facility facility = new Facility("My perfect facility",new Address("Hostivar","Praha"), "https://www.google.cz",acti);/**/
-            return View();
-=======
+		}		
+        
 		[HttpPost]
 		public IActionResult ShowDetail(Facility facility)
 		{
 
 			return View();
->>>>>>> f4c2e6a497ea5f72ed296b6f05cee4045cafa624
 		}
         
         public IActionResult MainPage()

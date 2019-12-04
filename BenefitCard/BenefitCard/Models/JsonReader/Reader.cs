@@ -12,7 +12,7 @@ namespace BenefitCard.Models.JsonReader
         public List<Facility> facilities = new List<Facility>();
         public void Read()
         {
-               using (TextReader tr = new StreamReader(Environment.CurrentDirectory + @"\Data\places.json"))
+               using (TextReader tr = new StreamReader(Environment.CurrentDirectory + @"\Models\Data\places.json"))
            // using (TextReader tr = new StreamReader("places.json"))
             {
                 JsonTextReader reader = new JsonTextReader(tr);
