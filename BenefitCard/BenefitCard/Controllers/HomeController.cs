@@ -27,11 +27,15 @@ namespace BenefitCard.Controllers
 
 		public IActionResult ListActivities()
 		{
-			//foreach 
-			List<string> activities = new List<string>();
-			activities.Add("Fotbal");
-			activities.Add("Tenis");
-			return View(activities);
+			List<string> activitiesToShow = new List<string>();
+
+			foreach ( var activity in database.Activities)
+			{
+				activitiesToShow.Add(activity.Item1);
+			}
+
+
+			return View(activitiesToShow);
 
 		}
 
