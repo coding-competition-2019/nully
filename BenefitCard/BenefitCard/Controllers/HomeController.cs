@@ -28,12 +28,10 @@ namespace BenefitCard.Controllers
 		public IActionResult ListActivities()
 		{
 			List<string> activitiesToShow = new List<string>();
-
-			foreach ( var activity in database.Activities)
+			foreach (var activity in database.Activities)
 			{
 				activitiesToShow.Add(activity.Item1);
 			}
-
 
 			return View(activitiesToShow);
 
@@ -46,18 +44,21 @@ namespace BenefitCard.Controllers
 			List<Facility> facilities = new List<Facility>();
 			foreach (string activity in choosenActivities)
 			{
-				var TupleOfActivity = database.Activities.Find(activity);
-
-				foreach (var facility in TupleOfActivity.Item2)
+				if (database != null)
 				{
-					facilities.Add(facility);
+					var TupleOfActivity = database.Activities.Find(activity);
+
+					foreach (var facility in TupleOfActivity.Item2)
+					{
+						facilities.Add(facility);
+					}
 				}
 			}
 			return View("TableActivities",facilities);
 		}
 
 		[HttpPost]
-		public IActionResult ShowDetail(Facility facility)
+		public IActionResult ShowDetail(int id)
 		{
 
 			return View();

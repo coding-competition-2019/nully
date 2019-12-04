@@ -5,7 +5,7 @@
 }
 <script>
 	function myMap() {
-		var myCenter = new google.maps.LatLng(20.296100, 85.824500);
+		var myCenter = new google.maps.LatLng(DataView[""], 85.824500);
 		var mapProp = { center: myCenter, zoom: 12, scrollwheel: false, draggable: true, mapTypeId: google.maps.MapTypeId.ROADMAP };
 		var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
 		var marker = new google.maps.Marker({ position: myCenter });

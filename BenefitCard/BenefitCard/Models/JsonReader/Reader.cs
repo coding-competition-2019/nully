@@ -12,27 +12,27 @@ namespace BenefitCard.Models.JsonReader
         public List<Facility> facilities = new List<Facility>();
         public void Read()
         {
-               using (TextReader tr = new StreamReader(Environment.CurrentDirectory + @"\Data\places.json"))
-           // using (TextReader tr = new StreamReader("places.json"))
-            {
-                JsonTextReader reader = new JsonTextReader(tr);
-                while (reader.Read())
-                {
-                    if (reader.Value != null)
-                    {
-                        if (reader.TokenType == JsonToken.PropertyName && (reader.Value.ToString() == "places"))
-                        {
-                            reader.Read(); // startarray
-                            reader.Read(); // startobject
-                            while (reader.TokenType == JsonToken.StartObject)
-                            {
-                                facilities.Add(ReadFacility(reader));
-                                reader.Read();
-                            }
-                        }
-                    }
-                }
-            }
+           //    using (TextReader tr = new StreamReader(Environment.CurrentDirectory + @"\Data\places.json"))
+           //// using (TextReader tr = new StreamReader("places.json"))
+           // {
+           //     JsonTextReader reader = new JsonTextReader(tr);
+           //     while (reader.Read())
+           //     {
+           //         if (reader.Value != null)
+           //         {
+           //             if (reader.TokenType == JsonToken.PropertyName && (reader.Value.ToString() == "places"))
+           //             {
+           //                 reader.Read(); // startarray
+           //                 reader.Read(); // startobject
+           //                 while (reader.TokenType == JsonToken.StartObject)
+           //                 {
+           //                     facilities.Add(ReadFacility(reader));
+           //                     reader.Read();
+           //                 }
+           //             }
+           //         }
+           //     }
+          //  }
         }
 
         Facility ReadFacility(JsonTextReader tr)

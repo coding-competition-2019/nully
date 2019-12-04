@@ -1,26 +1,24 @@
 ﻿@model List<Facility>;
 @{
-    ViewData["Title"] = "TableActivities";
+	ViewData["Title"] = "TableActivities";
 }
 
 <h1>TableActivities</h1>
-<div>
-	<table>
-		@foreach (var item in Model)
-		{
-			<tr>
-				<td>
-					@Html.DisplayFor(name => item.Name)
-				</td>
-				<td>
-					@Html.DisplayFor(name => item.Address.Street)
-				</td>
-				<td>
-					<a asp-action="ShowDetail" asp-route-id="@item.Id">Detail</a>
-				</td>
+<table>
+	@foreach (var item in Model)
+	{
+		<tr>
+			<td>
+				@Html.DisplayFor(name => item.Name)
+			</td>
+			<td>
+				@Html.DisplayFor(name => item.Address.Street)
+			</td>
+			<td>
+				<a asp-action="ShowDetail" asp-route-id="@item.Id">Detail</a>
+			</td>
 
-			</tr>
+		</tr>
 
-		}
-	</table>
-</div>
+	}
+</table>
