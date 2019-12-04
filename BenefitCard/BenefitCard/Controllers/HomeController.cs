@@ -27,11 +27,15 @@ namespace BenefitCard.Controllers
 
 		public IActionResult ListActivities()
 		{
-			//foreach 
-			List<string> activities = new List<string>();
-			activities.Add("Fotbal");
-			activities.Add("Tenis");
-			return View(activities);
+			List<string> activitiesToShow = new List<string>();
+
+			foreach ( var activity in database.Activities)
+			{
+				activitiesToShow.Add(activity.Item1);
+			}
+
+
+			return View(activitiesToShow);
 
 		}
 
@@ -44,7 +48,7 @@ namespace BenefitCard.Controllers
 			{
 				var TupleOfActivity = database.Activities.Find(activity);
 
-				foreach(var facility in TupleOfActivity.Item2)
+				foreach (var facility in TupleOfActivity.Item2)
 				{
 					facilities.Add(facility);
 				}
