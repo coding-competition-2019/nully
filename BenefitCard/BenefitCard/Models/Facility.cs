@@ -25,27 +25,29 @@ namespace BenefitCard.Models
         }/**/
 
 
-        public Coordinates GetCoordinates(Facility f)
+        public Coordinates GetCoordinates()
         {
             Coordinates c = new Coordinates();
 
             var client = new WebClient();
-            using (var stream = client.OpenRead(GetLocationAPI(f.Address)))
+            using (var stream = client.OpenRead(GetLocationAPI(this.Address)))
             {
                 using (var reader = new StreamReader(stream))
                 {
                     string line;
                     while ((line = reader.ReadLine()) != null)
                     {
-                        if (line.Contains("lat"))
+                        if (line.Contains("northeast"))
                         {
+                            line = reader.ReadLine();
                             c.Latitude = GetNumber(line);
-                        }
-                        else if (line.Contains("lng"))
-                        {
+
+                            line = reader.ReadLine();
                             c.Longtitude = GetNumber(line);
 
+                            return c;
                         }
+
                     }
                     return c;
                 }
