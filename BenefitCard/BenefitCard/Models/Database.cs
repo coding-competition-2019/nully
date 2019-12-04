@@ -7,11 +7,11 @@ using BenefitCard.Models.JsonReader;
 
 namespace BenefitCard.Models
 {
-	public class Database
-	{
-		public DbSet<Facility> Facilities { get; set; }
-		//Dictionary<string,List<Facility>>
-		public DbSet<Tuple<string, List<Facility>>> Activities { get; set; }
+    public class Database
+    {
+        public DbSet<Facility> Facilities { get; set; }
+        //Dictionary<string,List<Facility>>
+        public DbSet<Tuple<string, List<Facility>>> Activities { get; set; }
 
 
         //TODO
@@ -34,16 +34,29 @@ namespace BenefitCard.Models
 
                 foreach (string activity in f.Activities)
                 {
-                    bool found = false;
-                    foreach (Tuple<string, List<Facility>> t in Activities)
-                    {
-                        if (t.Item1 == activity)
-                        {
-                            found = true;
-
-                        }
-                    }
+                    AddActivity(activity, f);
                 }
+            }
+        }
+
+        void AddActivity(string activity, Facility f)
+        {
+            bool found = false;
+            foreach (Tuple<string, List<Facility>> t in Activities)
+            {
+                if (t.Item1 == activity)
+                {
+                    found = true;
+                    t.Item2.Add(f);
+                }
+            }
+
+            if (found == false)
+            {
+                List<Facility> l = new List<Facility>();
+                l.Add(f);
+
+                Activities.Add(new Tuple<string, List<Facility>>(activity, l));
             }
         }
     }
