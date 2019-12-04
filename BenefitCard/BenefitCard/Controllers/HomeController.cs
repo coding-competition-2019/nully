@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using BenefitCard.Models;
+using System.Net;
+using System.IO;
 
 namespace BenefitCard.Controllers
 {
@@ -40,8 +42,14 @@ namespace BenefitCard.Controllers
 		[HttpPost]
 		public IActionResult ListPlaces(string[] choosenActivities)
 		{
+			if (choosenActivities != null || choosenActivities.Length == 0)
+				return ErrorChooseEmpty();
+
 			//V tomhle jsou ty facility
 			List<Facility> facilities = new List<Facility>();
+
+			
+
 
 			foreach (string UserActivity in choosenActivities)
 			{
@@ -63,8 +71,77 @@ namespace BenefitCard.Controllers
 
 				}
 			}
+
+			//NAHRADIT COORDINATES USERA
+			SortByDistance(ref facilities, new Coordinates() {Latitude = 0, Longtitude = 0 });
+			//Tady se musí sesortit facilities by distance
+
+
 			return View("TableActivities", facilities);
 		}		
+
+
+		void SortByDistance(ref List<Facility> facilities, Coordinates userCoor)
+		{
+			foreach(var facility in facilities)
+			{
+				var client = new WebClient();
+				using (var stream = client.OpenRead(GetDistancesApi(facility, userCoor)))
+				{
+					using (var reader = new StreamReader(stream))
+					{
+						string line;
+						while ((line = reader.ReadLine()) != null)
+						{
+							if (line.Contains("distance"))
+							{
+								line = reader.ReadLine();
+								facility.distance = GetNumber(line);
+							}
+						}
+					}
+				}
+			}
+
+			facilities.Sort();
+
+		}
+
+		static int GetNumber(string s)
+		{
+			int num = 0;
+			for (int i = 0; i < s.Length; i++)
+			{
+				if (s[i] >= 48 && s[i] <= 57)
+				{
+					while (s[i] >= 48 && s[i] <= 57)
+					{
+						num += s[i] - 48;
+						num *= 10;
+						i++;
+					}
+					num /= 10;
+				}
+			}
+
+			return num;
+		}
+
+		static string GetDistancesApi(Facility facility, Coordinates userCOor)
+		{
+			string url = @"https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&mode=walking&origins=";
+			url += userCOor.Latitude;
+			url += ',';
+			url += userCOor.Longtitude;
+			url += '|';
+			var facCOor = facility.GetCoordinates();
+			url += facCOor.Latitude;
+			url += ',';
+			url += facCOor.Longtitude;
+			url += @"&key=AIzaSyCHQFxLKLWMvOQR5cCjKxkWED2YH98V2G8";
+
+			return url;
+		}
 
 
 		/// <summary>
@@ -115,6 +192,10 @@ namespace BenefitCard.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
+		public IActionResult ErrorChooseEmpty()
+		{
+			return View("ErrorChooseEmpty");
+		}
 
 		public IActionResult ShowMap()
 		{

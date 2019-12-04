@@ -46,6 +46,42 @@
         </tr>
     </table>
 
+	<style>
+		.dropdown-menu-form {
+			padding: 5px 10px 0;
+			max-height: 100px;
+			overflow-y: scroll;
+		}
+	</style>
+
+	@using (Html.BeginForm(new { action = "ListPlaces" }))
+	{
+		<div class="dropdown">
+			<a class="dropdown-toggle btn" data-toggle="dropdown" href="#">
+				Toggle dropdown
+				<b class="caret"></b>
+			</a>
+			<ul class="dropdown-menu dropdown-menu-form" role="menu">
+
+				@foreach (var item in Model)
+				{
+					<li>
+						<input type="checkbox" name="choosenActivities" id=@item value=@item />
+						@Html.DisplayFor(modelItem => item)
+					</li>
+
+				}
+			</ul>
+		</div>
+
+		<table>
+			<tr>
+				<td>
+					<input id="SubmitActivity" type="submit" class="btn btn-outline-success" value="Submit all chosen activities" />
+				</td>
+			</tr>
+		</table>
+	}
 
 
 
