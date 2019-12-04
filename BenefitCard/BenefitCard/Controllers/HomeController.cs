@@ -38,9 +38,7 @@ namespace BenefitCard.Controllers
 		{
 			return View();
 		}
-
-		public IActionResult Privacy()
-        {}
+		
         public IActionResult MainPage()
         {
             return View();
