@@ -27,23 +27,53 @@ namespace BenefitCard.Controllers
 
 		public IActionResult ListActivities()
 		{
-			//database.Facilities.Add(new Facility());
-			List<string> activities = new List<string>();
-			activities.Add("Fotbal");
-			activities.Add("Tenis");
-			return View(activities);
+			List<string> activitiesToShow = new List<string>();
+
+			foreach ( var activity in database.Activities)
+			{
+				activitiesToShow.Add(activity.Item1);
+			}
+
+
+			return View(activitiesToShow);
+
 		}
 
 		[HttpPost]
-		public IActionResult ListPlaces(string[] choosenPlaces)
+		public IActionResult ListPlaces(string[] choosenActivities)
 		{
-			return View();
+			//V tomhle jsou ty facility
+			List<Facility> facilities = new List<Facility>();
+			foreach (string activity in choosenActivities)
+			{
+				var TupleOfActivity = database.Activities.Find(activity);
+
+				foreach (var facility in TupleOfActivity.Item2)
+				{
+					facilities.Add(facility);
+				}
+			}
+			return View("TableActivities",facilities);
 		}
 
+<<<<<<< HEAD
+		public IActionResult ShowDetail(Facility facility) //
+        {
+            /*/List<string> acti = new List<string>();
+            acti.Add("Tennis");
+            acti.Add("Football");
+            acti.Add("Squash");
+            acti.Add("Swimming");
+
+            Facility facility = new Facility("My perfect facility",new Address("Hostivar","Praha"), "https://www.google.cz",acti);/**/
+            return View();
+=======
+		[HttpPost]
 		public IActionResult ShowDetail(Facility facility)
 		{
-			
+
 			return View();
+>>>>>>> f4c2e6a497ea5f72ed296b6f05cee4045cafa624
 		}
         
         public IActionResult MainPage()
@@ -56,20 +86,16 @@ namespace BenefitCard.Controllers
             return View();
         }
 
-        public IActionResult TableActivities()
-        {
-            //List<Facility> activities = new List<Facility>();
-            //Facility fac1 = new Facility("facility1",new Address("ulica1"));
-            //Facility fac2 = new Facility("facility2", new Address("ulica2"));
-            //activities.Add(fac1);
-            //activities.Add(fac2);
-            return View();
-        }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-    }
+
+
+		public IActionResult ShowMap()
+		{
+			return View();
+		}
+	}
 }
