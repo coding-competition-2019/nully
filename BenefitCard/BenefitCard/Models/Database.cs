@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BenefitCard.Models
 {
-	public class Database
+	public class Database : DbContext
 	{
 		public DbSet<Facility> Facilities { get; set; }
 		//Dictionary<string,List<Facility>>
@@ -16,6 +16,7 @@ namespace BenefitCard.Models
 		//TODO
 		public Database()
 		{
+			//this.Activities.
 			LoadDatabase();
 		}
 

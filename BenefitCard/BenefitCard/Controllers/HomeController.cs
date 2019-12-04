@@ -48,7 +48,7 @@ namespace BenefitCard.Controllers
 			{
 				var TupleOfActivity = database.Activities.Find(activity);
 
-				foreach(var facility in TupleOfActivity.Item2)
+				foreach (var facility in TupleOfActivity.Item2)
 				{
 					facilities.Add(facility);
 				}
