@@ -25,7 +25,8 @@ namespace BenefitCard.Controllers
             return View();
         }
 
-		public IActionResult ListActivities(string chosenActivity)
+        [HttpPost]
+        public ActionResult ListActivities(string chosenActivity, Coordinates c)
 		{
 
 			var activities = new List<string>();
@@ -36,7 +37,7 @@ namespace BenefitCard.Controllers
 
 			return View(activities);
 		}
-
+        
 		[HttpPost]
 		public IActionResult ListPlaces(string[] choosenActivities)
 		{
