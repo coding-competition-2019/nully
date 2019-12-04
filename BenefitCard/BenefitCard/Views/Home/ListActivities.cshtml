@@ -6,6 +6,46 @@
 <h2>Choose activities</h2>
 <div class="container">
 
+    <style>
+        .dropdown-menu-form {
+            padding: 5px 10px 0;
+            max-height: 250px;
+            overflow-y: scroll;
+        }
+    </style>
+
+    
+    <table>
+        <col width="70%">
+        <tr>
+            <td>
+                <div class="dropdown">
+                    <a class="dropdown-toggle btn" data-toggle="dropdown" href="#">
+                        Possible activities
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-form" role="menu">
+                        @foreach (var item in Model)
+                        {
+                            <li>
+                                <label class="checkbox">
+                                    <input type="checkbox">
+                                    @Html.DisplayFor(modelItem => item)
+                                </label>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </td>
+
+
+            <td>
+                <input align="bottom" id="SubmitActivity" type="submit" class="btn btn-outline-success" value="Submit all" />
+            </td>
+
+        </tr>
+    </table>
+
 	<style>
 		.dropdown-menu-form {
 			padding: 5px 10px 0;
@@ -42,6 +82,9 @@
 			</tr>
 		</table>
 	}
+
+
+
 
 </div>
 
