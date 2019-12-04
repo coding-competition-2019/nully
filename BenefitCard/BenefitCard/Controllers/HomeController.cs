@@ -63,17 +63,15 @@ namespace BenefitCard.Controllers
 			if (!database.Facilities.ContainsKey(id))
 			{
 				// return ERROR VIEW
-				return View();
+				return Error();
 			}
 			else
 			{
 				var facility = database.Facilities[id];
 
 
-				return View();
+				return View(facility);
 			}
-
-
 		}
         
         public IActionResult MainPage()
