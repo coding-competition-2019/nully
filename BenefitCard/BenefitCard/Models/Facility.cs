@@ -21,5 +21,16 @@ namespace BenefitCard.Models
             this.Activities = activities;
             this.Url = url;
         }/**/
+
+
+        static string GetLocationAPI(Address ad)
+        {
+            string url = @"https://maps.googleapis.com/maps/api/geocode/json?address=";
+            url += ad.Street.Replace(' ', '+');
+            url += ",";
+            url += ad.City.Replace(' ', '+');
+            url += @"&key=AIzaSyCHQFxLKLWMvOQR5cCjKxkWED2YH98V2G8";    
+            return url;
+        }
 	}
 }
