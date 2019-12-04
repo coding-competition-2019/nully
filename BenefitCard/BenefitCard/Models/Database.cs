@@ -35,7 +35,7 @@ namespace BenefitCard.Models
                 foreach (string activity in f.Activities)
                 {
                     bool found = false;
-                    foreach (Tuple<string, Facility> t in Activities)
+                    foreach (Tuple<string, List<Facility>> t in Activities)
                     {
                         if (t.Item1 == activity)
                         {
