@@ -36,6 +36,7 @@ namespace BenefitCard.Controllers
 				activities.Add(item.Key);
 			}
 
+            activities.Sort();
 			return View(activities);
 		}
 
