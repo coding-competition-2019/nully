@@ -14,14 +14,12 @@ namespace BenefitCard.Models
 		public DbSet<Tuple<string, List<Facility>>> Activities { get; set; }
 
 
-        //TODO
         public Database()
         {
             LoadDatabase();
 
         }
 
-        //TODO
         public void LoadDatabase()
         {
             int counter = 1;
