@@ -7,73 +7,67 @@
 <h1> @Html.DisplayFor(name => Model.Name)</h1>
 
 <h2>Location</h2>
-<table>
+	<table class="table-bordered">
+		<tr>
+			<td>
+				Street:
+			</td>
+			<td>
+				@Html.DisplayFor(name => Model.Address.Street)
+			</td>
+		<tr>
+			<td>
+				City:
+			</td>
+			<td>
+				@Html.DisplayFor(name => Model.Address.City)
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Zip Code:
+			</td>
+			<td>
+				@Html.DisplayFor(name => Model.Address.ZipCode)
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Distance:
+			</td>
+			<td>
+				@Html.DisplayFor(name => Model.distance) m
+			</td>
+		</tr>
+	</table>
+<br />
+
+<table class="table-dark">
 	<tr>
-		<td>
+		<td style="text-decoration: underline">
 			What can you do there?
 		</td>
 	</tr>
 	<tr>
 		<td>
-			Street:
-		</td>
-		<td>
-			@Html.DisplayFor(name => Model.Address.Street)
-		</td>
-	<tr>
-		<td>
-			City:
-		</td>
-		<td>
-			@Html.DisplayFor(name => Model.Address.City)
-		</td>
-	</tr>
-	<tr>
-		<td>
-			Zip Code:
-		</td>
-		<td>
-			@Html.DisplayFor(name => Model.Address.ZipCode)
+			@foreach (var item in Model.Activities)
+			{
+				if (item == Model.Activities.Last())
+				{
+					<span>@Html.DisplayFor(activity => item) </span>
+				}
+				else
+				{
+					<span>@Html.DisplayFor(activity => item), </span>
+				}
+			}
 		</td>
 	</tr>
 	<tr>
-		<td>
-			Distance:
-		</td>
-		<td>
-			<p>@Html.DisplayFor(name => Model.distance) m</p>
+		<td align="left">
+			For more information please follow <a id="HyperLink1" href="@Html.DisplayFor(activity => Model.Url)">this link</a>
 		</td>
 	</tr>
-</table>
-
-<br />
-
-<table class="table-dark">
-    <tr>
-        <td style="text-decoration: underline">
-            What can you do there?
-        </td>
-    </tr>
-    <tr>
-        <td>
-            @foreach (var item in Model.Activities)
-            {
-                if (item == Model.Activities.Last())
-                {
-                    <span>@Html.DisplayFor(activity => item) </span>
-                }
-                else
-                {
-                    <span>@Html.DisplayFor(activity => item), </span>
-                }
-            }
-        </td>
-    </tr>
-    <tr>
-        <td align="left">
-            For more information please follow <a id="HyperLink1" href="@Html.DisplayFor(activity => Model.Url)">this link</a>
-        </td>
-    </tr>
 </table>
 
 <br />
