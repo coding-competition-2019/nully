@@ -47,7 +47,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td class="bg-dark">
+		<td>
 			@foreach (var item in Model.Activities)
 			{
 				@Html.DisplayFor(activity => item)
@@ -69,16 +69,6 @@
 <h3>Map</h3>
 <br />
 
-<script>
-	function myMap() {
-		var myCenter = new google.maps.LatLng(85.824500, 85.824500);
-		var mapProp = { center: myCenter, zoom: 12, scrollwheel: false, draggable: true, mapTypeId: google.maps.MapTypeId.ROADMAP };
-		var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
-		var marker = new google.maps.Marker({ position: myCenter });
-		marker.setMap(map);
-	}
-</script>
-
 <fieldset>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -90,7 +80,7 @@
 	<script>
 
 		function myMap() {
-			var myCenter = new google.maps.LatLng(20.296100, 85.824500);
+			var myCenter = new google.maps.LatLng(@Model.GetCoordinates().Latitude, @Model.GetCoordinates().Longtitude);
 			var mapProp = { center: myCenter, zoom: 12, scrollwheel: false, draggable: true, mapTypeId: google.maps.MapTypeId.ROADMAP };
 			var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
 			var marker = new google.maps.Marker({ position: myCenter });
