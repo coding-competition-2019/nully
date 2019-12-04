@@ -39,8 +39,8 @@ namespace BenefitCard.Controllers
 			return View(activities);
 		}
 
-		[HttpPost]
-		public IActionResult ListPlaces(string[] choosenActivities)
+		[HttpPost] ///TADY MUSÍ BÝT JEŠTĚ COORDINACE USERA A POČET KILOMETRŮ V OKRUHU JAKEM CHCE HLEDAT
+		public IActionResult ListPlaces(string[] choosenActivities, int distanceRestriction)
 		{
 			if (choosenActivities != null || choosenActivities.Length == 0)
 				return ErrorChooseEmpty();
@@ -73,14 +73,16 @@ namespace BenefitCard.Controllers
 			}
 
 			//NAHRADIT COORDINATES USERA
-			SortByDistance(ref facilities, new Coordinates() {Latitude = 0, Longtitude = 0 });
+			//SortByDistance(ref facilities, new Coordinates() {Latitude = 0, Longtitude = 0 });
 			//Tady se musí sesortit facilities by distance
 
+			//RestrictByDistance(ref facilities, distanceRestriction);
 
 			return View("TableActivities", facilities);
-		}		
+		}
 
-
+		#region HELPERS
+		//Not needed
 		void SortByDistance(ref List<Facility> facilities, Coordinates userCoor)
 		{
 			foreach(var facility in facilities)
@@ -106,6 +108,17 @@ namespace BenefitCard.Controllers
 			facilities.Sort();
 		}
 
+
+		void RestrictByDistance(ref List<Facility> facilities, int restriction)
+		{
+			foreach(Facility facility in facilities)
+			{
+				if (facility.distance > restriction)
+				{
+					facilities.Remove(facility);
+				}
+			}
+		}
 		static int GetNumber(string s)
 		{
 			int num = 0;
@@ -164,7 +177,7 @@ namespace BenefitCard.Controllers
 			}
 			return false;
 		}
-        
+		#endregion
 		public IActionResult ShowDetail(int id = 0)
 		{
 
@@ -176,6 +189,27 @@ namespace BenefitCard.Controllers
 			else
 			{
 				var facility = database.Facilities[id];
+
+				var userCoor = new Coordinates() { Latitude = 0, Longtitude = 0 };
+
+				var client = new WebClient();
+				using (var stream = client.OpenRead(GetDistancesApi(facility, userCoor)))
+				{
+					using (var reader = new StreamReader(stream))
+					{
+						string line;
+						while ((line = reader.ReadLine()) != null)
+						{
+							if (line.Contains("distance"))
+							{
+								line = reader.ReadLine();
+								facility.distance = GetNumber(line);
+							}
+						}
+					}
+				}
+
+
 				return View(facility);
 			}
 		}
