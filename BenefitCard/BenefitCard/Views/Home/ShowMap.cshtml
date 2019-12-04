@@ -5,7 +5,7 @@
 }
 <script>
 	function myMap() {
-		var myCenter = new google.maps.LatLng(DataView[""], 85.824500);
+		var myCenter = new google.maps.LatLng(85.824500, 85.824500);
 		var mapProp = { center: myCenter, zoom: 12, scrollwheel: false, draggable: true, mapTypeId: google.maps.MapTypeId.ROADMAP };
 		var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
 		var marker = new google.maps.Marker({ position: myCenter });
@@ -34,7 +34,7 @@
 			marker.setMap(map);
 		}
 	</script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=put_your_api_key_here&callback=myMap"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHQFxLKLWMvOQR5cCjKxkWED2YH98V2G8&callback=myMap"></script>
 </fieldset>
 <footer>
 	<p style="background-color: Yellow; font-weight: bold; color:blue; text-align: center; font-style: oblique">© @DateTime.Now.ToLocalTime()</p> @*Add Date Time*@
