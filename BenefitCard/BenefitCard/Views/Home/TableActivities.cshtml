@@ -9,17 +9,21 @@
         @foreach (var item in Model)
         {
         <tr>
-
             <td>
                 @Html.DisplayFor(name => item.Name)
             </td>
             <td>
                 @Html.DisplayFor(name => item.Address.Street)
             </td>
-            <td>
-                <input id="DetailOfPlace" type="submit" value="Show Detail" />
-            </td>
-        </tr>
-        }
+			<td>
+				@using (Html.BeginForm(new { action = "Detail" }))
+				{
+					<input name="facility" type="submit" value="Show Detail" />
+				}
+			</td>
+
+		</tr>
+
+		}
     </table>
 </div>
