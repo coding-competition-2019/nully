@@ -24,12 +24,13 @@ namespace BenefitCard.Models
             this.Url = url;
         }/**/
 
-        public Coordinates GetCoordinates(Facility f)
+
+        public Coordinates GetCoordinates()
         {
             Coordinates c = new Coordinates();
 
             var client = new WebClient();
-            using (var stream = client.OpenRead(GetLocationAPI(f.Address)))
+            using (var stream = client.OpenRead(GetLocationAPI(this.Address)))
             {
                 using (var reader = new StreamReader(stream))
                 {
@@ -48,9 +49,9 @@ namespace BenefitCard.Models
                         }
 
                     }
+                    return c;
                 }
             }
-            return c;
         }
 
 
