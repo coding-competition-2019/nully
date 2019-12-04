@@ -31,13 +31,12 @@ namespace BenefitCard.Controllers
 			return View(activities);
 		}
 
-		public IActionResult ListPlaces()
+		[HttpPost]
+		public IActionResult ListPlaces(string[] choosenPlaces)
 		{
 			return View();
 		}
 
-		public IActionResult Privacy()
-        {}
         public IActionResult MainPage()
         {
             return View();

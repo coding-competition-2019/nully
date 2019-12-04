@@ -4,13 +4,15 @@
 }
 
 <h2>Choose activities</h2>
-<form>
+
+@using (Html.BeginForm(new { action = "ListPlaces" }))
+{
 	<table>
 		@foreach (var item in Model)
 		{
 			<tr>
 				<td>
-					<input id=@item type="checkbox" />
+					<input type="checkbox" name="choosenPlaces" id=@item value=@item />
 				</td>
 				<td>
 					@Html.DisplayFor(modelItem => item)
@@ -18,5 +20,6 @@
 			</tr>
 		}
 	</table>
-	<input id="Submit1" type="submit" value="Search" />
-</form>
+	<input type="submit" value="Search" />
+}
+
