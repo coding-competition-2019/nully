@@ -40,6 +40,9 @@ namespace BenefitCard.Controllers
 		[HttpPost]
 		public IActionResult ListPlaces(string[] choosenActivities)
 		{
+			if (choosenActivities != null || choosenActivities.Length == 0)
+				return ErrorChooseEmpty();
+
 			//V tomhle jsou ty facility
 			List<Facility> facilities = new List<Facility>();
 
@@ -115,6 +118,10 @@ namespace BenefitCard.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
+		public IActionResult ErrorChooseEmpty()
+		{
+			return View("ErrorChooseEmpty");
+		}
 
 		public IActionResult ShowMap()
 		{
