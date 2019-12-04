@@ -7,7 +7,7 @@ namespace BenefitCard.Models
 {
 	public class Coordinates
 	{
-		public double Longtitude { get; set; }
-		public double Latitude { get; set; }
+		public decimal Longtitude { get; set; }
+		public decimal Latitude { get; set; }
 	}
 }
