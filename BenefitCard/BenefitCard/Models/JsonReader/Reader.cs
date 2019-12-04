@@ -8,6 +8,6 @@ namespace BenefitCard.Models.JsonReader
 {
     public class Reader
     {
-        string json = JsonConvert.SerializeObject(account, Formatting.Indented);
+        //string json = JsonConvert.SerializeObject(account, Formatting.Indented);
     }
 }

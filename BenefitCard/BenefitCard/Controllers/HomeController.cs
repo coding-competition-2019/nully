@@ -34,8 +34,8 @@ namespace BenefitCard.Controllers
 		public IActionResult ListPlaces()
 		{
 			return View();
-		}
-		
+		}	
+        
         public IActionResult MainPage()
         {
             return View();
@@ -43,6 +43,16 @@ namespace BenefitCard.Controllers
 
         public IActionResult Privacy()
         {
+            return View();
+        }
+
+        public IActionResult TableActivities()
+        {
+            //List<Facility> activities = new List<Facility>();
+            //Facility fac1 = new Facility("facility1",new Address("ulica1"));
+            //Facility fac2 = new Facility("facility2", new Address("ulica2"));
+            //activities.Add(fac1);
+            //activities.Add(fac2);
             return View();
         }
 
