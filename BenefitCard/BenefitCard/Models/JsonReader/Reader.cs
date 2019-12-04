@@ -22,7 +22,7 @@ namespace BenefitCard.Models.JsonReader
                     {
                         if (reader.TokenType == JsonToken.PropertyName && (reader.Value.ToString() == "places"))
                         {
-                            reader.Read();//startarray
+                            reader.Read(); // startarray
                             reader.Read(); // startobject
                             while (reader.TokenType == JsonToken.StartObject)
                             {

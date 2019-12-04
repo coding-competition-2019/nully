@@ -7,11 +7,11 @@ using BenefitCard.Models.JsonReader;
 
 namespace BenefitCard.Models
 {
-    public class Database
-    {
-        public DbSet<Facility> Facilities { get; set; }
-        //Dictionary<string,List<Facility>>
-        public DbSet<Tuple<string, List<Facility>>> Activities { get; set; }
+	public class Database : DbContext
+	{
+		public DbSet<Facility> Facilities { get; set; }
+		//Dictionary<string,List<Facility>>
+		public DbSet<Tuple<string, List<Facility>>> Activities { get; set; }
 
 
         //TODO
