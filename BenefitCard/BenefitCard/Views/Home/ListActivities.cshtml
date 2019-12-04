@@ -6,11 +6,6 @@
 <h2>Choose activities</h2>
 <div class="container">
 
-    <script>
-        $('.vec :checkbox').parent().on('click', function (event) {
-            event.stopPropagation()
-        });
-    </script>
     <style>
         .dropdown-menu-form {
             padding: 5px 10px 0;
@@ -47,8 +42,10 @@
                             {
                                 <div class="vec">
                                     <li>
-                                        <input type="checkbox" name="choosenActivities" id=@item value=@item />
-                                        @Html.DisplayFor(modelItem => item)
+                                        <label>
+                                            <input type="checkbox" name="choosenActivities" id=@item value=@item />
+                                            @Html.DisplayFor(modelItem => item)
+                                        </label>
                                     </li>
                                 </div>
                             }
