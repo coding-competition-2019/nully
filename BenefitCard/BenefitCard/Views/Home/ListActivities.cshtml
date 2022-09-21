@@ -5,7 +5,6 @@
 
 <h2>Choose activities</h2>
 <div class="container">
-
     <style>
         .dropdown-menu-form {
             padding: 5px 10px 0;
@@ -41,8 +40,8 @@
                             @foreach (var item in Model)
                             {
                                 <div class="vec">
-                                    <li>
-                                        <label>
+                                    <li class="dont">
+                                        <label ="content">
                                             <input type="checkbox" name="choosenActivities" id=@item value=@item />
                                             @Html.DisplayFor(modelItem => item)
                                         </label>
@@ -68,11 +67,6 @@
             overflow-y: scroll;
         }
     </style>
-
-
-
-
-
 </div>
 
 
